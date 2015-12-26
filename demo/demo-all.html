@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery-form-内置表单项类型</title>
+<!-- 外部依赖 -->
+<!-- jquery -->
+<script type="text/javascript" src="../lib/jquery-easyui-1.3.5/jquery-1.10.2.min.js"></script>
+<!-- easyui -->
+<link type="text/css" rel="stylesheet" href="../lib/jquery-easyui-1.3.5/themes/default/easyui.css">
+<link type="text/css" rel="stylesheet" href="../lib/jquery-easyui-1.3.5/themes/icon.css"/>
+<script type="text/javascript" src="../lib/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+<!-- kindeditor -->
+<link rel="stylesheet" href="../lib/kindeditor-4.1.10/themes/default/default.css" />
+<script charset="utf-8" src="../lib/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="../lib/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<!-- layer layer插件-->
+<script charset="utf-8" src="../lib/layer/layer.js"></script>
+<!-- jquery-tmpl jquery 模板插件-->
+<script charset="utf-8" src="../lib/jquery-tmpl/jquery.tmpl.js"></script>
+<!-- jquery-imagebox jquery 图片盒子插件，依赖jquery,jquery-dragable,jquery-mousewheel -->
+<script charset="utf-8" src="../lib/jquery-imagebox/lib/jquery.draggable.js"></script>
+<script charset="utf-8" src="../lib/jquery-imagebox/lib/jquery.mousewheel.min.js"></script>
+<script charset="utf-8" src="../lib/jquery-imagebox/jquery.imagebox.js"></script>
+<!-- 百度地图开放api -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XejYah3HvXhp37PPNCRFPHua"></script>
+<!-- jquery-dataform -->
+<script charset="utf-8" src="../jquery.dataform.js"></script>
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+<style type="text/css">
+	body{
+		background-color: #E1FFDF; 
+		padding-top: 20px;
+	}
+	#head{
+		height: 60px;
+		background-color: rgba(0, 0, 0, 0.78);
+	}
+	#form{
+		width: 800px;
+		margin:0px auto;
+	}
+	table{
+		border-collapse: collapse;
+	}
+	td{
+		border : 1px solid #ccc;
+		border-left: 1px;
+		border-right: 1px;
+	} 
+	.red{
+		color:red;
+	}
+</style>
+</head>
+
+<body>
+	<div id="form"></div>
+</body>
+<script type="text/javascript">
+	var require = "<span class='red'>*必填</span>";
+	var form;
+	$(function(){
+		var opt = {
+			LineHeight: "40px",
+			LineIheight: "38px",
+			LineIwidth: "220px",
+			columns:[[
+				{field:"t0",value:"我是标题域，下面的也是",showType:"title",showOnly:true}
+				,{field:"b0",showType:"title",height:"10px",showOnly:true}
+				,{field:"tip0",value:"我是提示域，上面的,没有配置value",showType:"tip",height:"20px",width:"auto",showOnly:true}
+
+				,{field:"t1",value:"隐藏单行文本域(hidden),下面真没有东西，不信你审查",showType:"title",width:"auto",showOnly:true}
+				,{field:"id",label:"ID",showType:"hidden",value:"0001"}
+
+				,{field:"b2",showType:"title",height:"10px",showOnly:true}
+				,{field:"t2",value:"单行文本域(text)",showType:"title",showOnly:true}
+
+				,{field:"username",label:"帐号",showType:"text",value:"",hint:"请输入帐号",tip:require+"帐号只能包含数字和字母，长度在6-18之间",validators:["a0","length(6,18)"]}
+				,{field:"tip1",value:"友情提示：推荐使用您常用的手机号码",showType:"tip",height:"20px",width:"auto",showOnly:true}
+
+				,{field:"b3",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t3",value:"单行密码域（password）",showType:"title",showOnly:true}
+
+				,{field:"password",label:"密码",showType:"password",tip:require+"密码只能包含数字和字母，长度在6-18之间",validators:["a0","length(6,18)"]}
+				,{field:"repassword",label:"重复密码",showType:"password",tip:require+"请重新输入密码",validators:["similar2('password','两次密码输入不一致')"]}
+
+				,{field:"b4",showType:"title",height:"10px",showOnly:true}
+				,{field:"t4",value:"多行文本域（textarea）",showType:"title",showOnly:true}
+
+				,{field:"desc",label:"描述",value:"雄啊，我真的很开心",showType:"textarea",width:"420px",height:"300px",validators:["notnull('描述不能为空')"]}
+
+				,{field:"b5",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t5",value:"日期盒子域（datebox）",showType:"title",showOnly:true}
+				,{field:"birthday",label:"生日",showType:"datebox",tip:require+"请填写您的生日",validators:["notnull('相信我们，您的信息不会外泄')"]
+				}
+				,{field:"tip5",value:"如果需要使用easyui-datebox自身的配置，可以在上面配置ext字段，---------------------------------------------------------------------------------------------格式可以是这样：ext:{datebox:{...配置内容在这里...}}",showType:"tip",height:"auto",width:"auto",showOnly:true}
+
+				,{field:"b6",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t6",value:"时间盒子域（datetimebox）",showType:"title",showOnly:true}
+				,{field:"time",label:"时间",showType:"datetimebox",tip:require+"请随意填个",validators:["notnull('是真的要你随意填哦')"]}
+
+				,{field:"b7",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t7",value:"单选下拉框域（combobox）",showType:"title",showOnly:true}
+				,{field:"type7",label:"职业",showType:"combobox",tip:require+"请选择职业",validators:["notnull('还是选择个吧')"],ext:{combobox:{valueField: 'value',textField: 'label',
+					data: [{
+						label: 'JAVA工程师',
+						value: 'java'
+					},{
+						label: 'NET工程师',
+						value: 'net'
+					},{
+						label: '前端工程师',
+						value: 'html'
+					}] }}
+				}
+				,{field:"b8",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t8",value:"多选框域（checkbox）",showType:"title",showOnly:true}
+				,{field:"type8",label:"爱好",showType:"checkbox",tip:"请选择爱好",ext:{checkbox:{valueField: 'value',textField: 'label',
+					data: [{
+						label: '吃饭',
+						value: 'eat'
+					},{
+						label: '睡觉',
+						value: 'sleep'
+					},{
+						label: '打豆豆',
+						value: 'fight'
+					}] }}
+				}
+
+				,{field:"b9",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t9",value:"单选框域（radio）",showType:"title",showOnly:true}
+				,{field:"type9",label:"性别",showType:"radio",tip:require+"请选择性别",ext:{radio:{valueField: 'value',textField: 'label',
+					data: [{
+						label: '男性',
+						value: 'man'
+					},{
+						label: '女性',
+						value: 'human'
+					},{
+						label: '其他',
+						value: 'unknow'
+					}] }},validators:["notnull('请选择性别')"]
+				}
+
+				,{field:"b10",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t10",value:"富文本域（kindeditor）",showType:"title",showOnly:true}
+				,{field:"intro",label:"使用说明",showType:"kindeditor",ext:{kindeditor:{
+					}},width:"400px",height:"400px",validators:["notnull('请填写使用说明')"]
+				}
+				,{field:"tip10",value:require+"请填写使用说明",showType:"tip",height:"auto",width:"auto",showOnly:true}
+
+				,{field:"b11",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t11",value:"百度地图选点域（map）",showType:"title",showOnly:true}
+				,{field:"position",label:"坐标",showType:"map",validators:["notnull('请在地图选点')"]
+				}
+				,{field:"tip11",value:"Uncaught SecurityError: Blocked a frame with origin 'null' from accessing a frame with origin 'null'. Protocols, domains, and ports must match.---（跨域请求真的不能实现啊？）",showType:"tip",height:"auto",width:"auto",showOnly:true}
+
+				,{field:"b12",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t12",value:"百度地图域（bmap）",showType:"title",showOnly:true}
+				,{field:"address",label:"地址",showType:"bmap",width:"600px",height:"400px",validators:["notnull('请在地图选点')"],showOnly:true
+				}
+				
+				,{field:"b13",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t13",value:"单行图片文本域（image）",showType:"title",showOnly:true}
+				,{field:"image",label:"图片",showType:"image",validators:["notnull('请先上传图片')"],
+				}
+
+				,{field:"b14",showType:"title",showOnly:true,height:"10px",showOnly:true}
+				,{field:"t14",value:"网格图片盒子域（imagebox）",showType:"title",showOnly:true}
+				,{field:"images",label:"图片们",showType:"imagebox",width:"600px",height:"400px",validators:["size(0,4,'最多上传4张图片')"]
+				}
+
+			]]};
+		form = $("#form").dataform(opt);
+		/*layer.open({
+		    type: 2,
+		    resize:true,
+		    title: 'layer mobile页',
+		    area: ['380px', '90%'],
+		    content: './demo-base.html' //iframe的url
+		}); */
+	});
+</script>
+</html>

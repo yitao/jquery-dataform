@@ -1,0 +1,34 @@
+目前支持表单项：
+hidden: 隐藏单行文本
+text: 单行文本
+password: 单行密码
+textarea: 多行文本
+title: 标题
+tip: 提示
+--
+checkbox: 多选框
+radio: 单选框
+--easyui
+datebox: 日期盒子
+datetimebox: 时间盒子
+combobox: 单选下拉框盒子
+--
+kindeditor: 富文本编辑器
+map: 单行文本-百度地图坐标
+bmap: 百度地图
+image: 单行文本-图片盒子
+imagebox: 网格图片-图片盒子
+
+
+配置参数中的一些参数说明：
+LineHeight : 代表的是这一行的内容域的行高，而不是代表你的输入框的高
+LineWidth : 代表的是这一行的内容域的行宽，而不是代表你的输入框的宽
+
+表单项参数说明：
+hint : 作为html5属性placeholder
+
+
+
+样式定义
+dataform_panel 总面板
+	dataform_container table容器

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试页面</title>
+<!-- 外部依赖 -->
+<!-- jquery -->
+<script type="text/javascript" src="../lib/jquery-easyui-1.3.5/jquery-1.10.2.min.js"></script>
+<!-- easyui -->
+<link type="text/css" rel="stylesheet" href="../lib/jquery-easyui-1.3.5/themes/default/easyui.css">
+<link type="text/css" rel="stylesheet" href="../lib/jquery-easyui-1.3.5/themes/icon.css"/>
+<script type="text/javascript" src="../lib/jquery-easyui-1.3.5/jquery.easyui.min.js"></script>
+<!-- kindeditor -->
+<link rel="stylesheet" href="../lib/kindeditor-4.1.10/themes/default/default.css" />
+<script charset="utf-8" src="../lib/kindeditor-4.1.10/kindeditor-all-min.js"></script>
+<script charset="utf-8" src="../lib/kindeditor-4.1.10/lang/zh_CN.js"></script>
+<!-- layer layer插件-->
+<script charset="utf-8" src="../lib/layer/layer.js"></script>
+<!-- jquery-tmpl jquery 模板插件-->
+<script charset="utf-8" src="../lib/jquery-tmpl/jquery.tmpl.js"></script>
+<!-- jquery-imagebox jquery 图片盒子插件，依赖jquery,jquery-dragable,jquery-mousewheel -->
+<script charset="utf-8" src="../lib/jquery-imagebox/lib/jquery.draggable.js"></script>
+<script charset="utf-8" src="../lib/jquery-imagebox/lib/jquery.mousewheel.min.js"></script>
+<script charset="utf-8" src="../lib/jquery-imagebox/jquery.imagebox.js"></script>
+<!-- 百度地图开放api -->
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=XejYah3HvXhp37PPNCRFPHua"></script>
+<!-- jquery-dataform -->
+<script charset="utf-8" src="../jquery.dataform.js"></script>
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+<style type="text/css">
+	body{
+		background-color: #E1FFDF; 
+		padding-top: 20px;
+	}
+	
+	#test,#test2,#test3{
+		width: 800px;
+		margin:100px auto;
+		height: 100px;
+		background-color: green;
+
+	}
+	
+</style>
+</head>
+
+<body>
+	<input id="test"/>
+	<div id="test2" style="background-color: #fdc"></div>
+	<div id="test3" style="background-color: #cdf"></div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$("#test").blur(function(){
+			alert("test on blur1");
+		});
+		$("#test").blur(function(){
+			alert("test on blur2");
+		});
+	});
+</script>
+</html>
